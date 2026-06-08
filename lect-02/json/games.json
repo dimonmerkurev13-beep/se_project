@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "The Witcher 3",
+    "genre": "RPG",
+    "rating": 95
+  },
+  {
+    "id": 2,
+    "title": "Cyberpunk 2077",
+    "genre": "RPG",
+    "rating": 78
+  },
+  {
+    "id": 3,
+    "title": "Counter-Strike 2",
+    "genre": "Shooter",
+    "rating": 88
+  },
+  {
+    "id": 4,
+    "title": "Baldur's Gate 3",
+    "genre": "RPG",
+    "rating": 96
+  },
+  {
+    "id": 5,
+    "title": "Dota 2",
+    "genre": "MOBA",
+    "rating": 82
+  },
+  {
+    "id": 6,
+    "title": "Elden Ring",
+    "genre": "Action RPG",
+    "rating": 94
+  },
+  {
+    "id": 7,
+    "title": "God of War Ragnarök",
+    "genre": "Action",
+    "rating": 92
+  },
+  {
+    "id": 8,
+    "title": "Red Dead Redemption 2",
+    "genre": "Action Adventure",
+    "rating": 97
+  },
+  {
+    "id": 9,
+    "title": "Valorant",
+    "genre": "Shooter",
+    "rating": 84
+  },
+  {
+    "id": 10,
+    "title": "Minecraft",
+    "genre": "Sandbox",
+    "rating": 93
+  },
+  {
+    "id": 11,
+    "title": "League of Legends",
+    "genre": "MOBA",
+    "rating": 80
+  },
+  {
+    "id": 12,
+    "title": "Apex Legends",
+    "genre": "Battle Royale",
+    "rating": 86
+  },
+  {
+    "id": 13,
+    "title": "Fortnite",
+    "genre": "Battle Royale",
+    "rating": 81
+  },
+  {
+    "id": 14,
+    "title": "Hogwarts Legacy",
+    "genre": "Action RPG",
+    "rating": 83
+  },
+  {
+    "id": 15,
+    "title": "Starfield",
+    "genre": "RPG",
+    "rating": 75
+  },
+  {
+    "id": 16,
+    "title": "The Legend of Zelda: Tears of the Kingdom",
+    "genre": "Action Adventure",
+    "rating": 96
+  },
+  {
+    "id": 17,
+    "title": "Call of Duty: Modern Warfare III",
+    "genre": "Shooter",
+    "rating": 70
+  },
+  {
+    "id": 18,
+    "title": "GTA V",
+    "genre": "Action Adventure",
+    "rating": 91
+  },
+  {
+    "id": 19,
+    "title": "World of Warcraft",
+    "genre": "MMORPG",
+    "rating": 87
+  },
+  {
+    "id": 20,
+    "title": "FIFA 24",
+    "genre": "Sports",
+    "rating": 74
+  }
+]

@@ -1,0 +1,707 @@
+/* reset.css - современный сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Анимированный градиент на body */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+}
+
+/* Контейнер с эффектом стекла (glassmorphism) */
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(0px);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* Таблицы — современный минимализм */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    font-weight: 600;
+    padding: 16px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.sorting{
+    padding: 14px 12px;
+    text-align: center;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+td {
+    padding: 14px 12px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+/* Анимация для строк таблицы */
+tr {
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 0;
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:hover {
+    background-color: #e0f2fe !important;
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Кнопки — современный дизайн с анимациями */
+button, .btn, .green, .blue, .red {
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 24px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Эффект пульсации при клике (ripple) */
+button::after, .btn::after, .green::after, .blue::after, .red::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+button:active::after, .btn:active::after, .green:active::after, .blue:active::after, .red:active::after {
+    width: 120%;
+    height: 120%;
+}
+
+/* Зелёная кнопка */
+.green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.green:active {
+    transform: translateY(0);
+}
+
+/* Синяя кнопка */
+.blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.blue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.blue:active {
+    transform: translateY(0);
+}
+
+/* Красная кнопка */
+.red {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* Селекты — современный стиль */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 280px;
+}
+
+.select-wrapper label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+}
+
+.select-wrapper select:hover {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Радио-кнопки — кастомные */
+.radio {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin: 0;
+}
+
+.radio label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #334155;
+    font-weight: 500;
+}
+
+.radio input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.radio input[type="radio"]:checked {
+    border-color: #10b981;
+    background-color: #10b981;
+    box-shadow: inset 0 0 0 3px white;
+}
+
+.radio input[type="radio"]:hover {
+    border-color: #10b981;
+}
+
+/* Поля ввода — современный стиль */
+input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input[type="text"]:hover {
+    border-color: #94a3b8;
+}
+input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input[type="number"]:hover {
+    border-color: #94a3b8;
+}
+/* Заголовки */
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 24px 0 16px 0;
+    padding-left: 8px;
+    border-left: 4px solid #3b82f6;
+}
+
+/* Цитата/блок с кнопками */
+.citata {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 24px 0 16px 0;
+}
+
+/* Стили для рейтинга */
+.list-green {
+    color: #059669;
+    font-weight: 700;
+    font-size: 1rem;
+    background: rgba(5, 150, 105, 0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+.list-red {
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1rem;
+    background: rgba(220, 38, 38, 0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+/* Анимация появления элементов */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container, table, form, .citata {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        padding: 10px 8px;
+    }
+    
+    .select-wrapper {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+    
+    .radio {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .citata {
+        flex-direction: column;
+    }
+    
+    button, .btn, .green, .blue, .red {
+        width: 100%;
+    }
+    
+    .title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Стилизация скроллбара */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Эффект для ссылок */
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Анимация загрузки (скелетон) — опционально */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+/* Оверлей (фон) */
+.modal-overlay {
+    position: fixed;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 150%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Активное состояние модалки */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Контейнер модального окна */
+.modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalSlideIn 0.3s ease;
+    overflow: hidden;
+}
+
+/* Анимация появления */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Шапка модалки */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+    border-bottom: 1px solid #fecaca;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #991b1b;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.modal-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Тело модалки */
+.modal-body {
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.warning-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    color: #dc2626;
+}
+
+.modal-body p {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #374151;
+}
+
+.modal-hint {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+/* Футер с кнопками */
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 18px 24px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+}
+
+.btn-cancel, .btn-confirm {
+    flex: 1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-cancel {
+    background: white;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+}
+
+.btn-cancel:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+.btn-confirm {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.btn-confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+.btn-confirm:active {
+    transform: translateY(0);
+}
+/* Стили для поля ввода лимита */
+.limit-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.limit-wrapper label {
+    font-weight: 500;
+    color: #1e293b;
+    font-size: 0.9rem;
+}
+
+.limit-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.limit-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: #ffffff;
+}
+
+.limit-input:hover {
+    border-color: #94a3b8;
+}
+
+/* Убираем стандартные стрелки в Firefox */
+.limit-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Убираем стандартные стрелки в Chrome/Safari */
+.limit-input[type="number"]::-webkit-inner-spin-button,
+.limit-input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.5;
+    height: 24px;
+}
+
+.limit-input[type="number"]::-webkit-inner-spin-button:hover,
+.limit-input[type="number"]::-webkit-outer-spin-button:hover {
+    opacity: 1;
+}
+
+.limit-hint {
+    font-size: 0.7rem;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+/* Стили для блока с радио-кнопками */
+.radio-wrapper {
+    padding: 10px;
+}
+
+.radio-wrapper > label {
+    font-weight: 500;
+    color: #1e293b;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.radio {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+}
+
+.radio label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    table, tbody, tr {
+        display: block;
+    }
+    
+    td {
+        display: block;
+        width: 100% !important;
+        padding: 10px 0;
+    }
+    
+    .limit-input {
+        max-width: 100%;
+    }
+    
+    .radio {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

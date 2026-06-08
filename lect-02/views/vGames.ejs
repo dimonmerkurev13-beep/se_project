@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>Game Library</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="shortcut icon" href="/css/favicon.ico" />
+</head>
+
+<body>
+    <div class="container">
+    
+    <form method="GET" action="/games/order">
+        <table>
+            <tr>
+                <td width="40%">
+                    <div class="select-wrapper">
+                        <label for="mySelect">Поле для сортировки:</label>
+                        <select id="mySelect" name="field">
+                            <option value="title" <%= field === 'title' ? 'selected' : '' %>> Название </option>
+                            <option value="genre" <%= field === 'genre' ? 'selected' : '' %>> Жанр </option>
+                            <option value="rating" <%= field === 'rating' ? 'selected' : '' %>> Рейтинг </option>
+                        </select>
+                    </div>
+                </td>
+                
+                <td width="30%">
+                    <div class="limit-wrapper">
+                        <label for="ratingLimit">Порог рейтинга (зелёный):</label>
+                        <input type="number" 
+                            id="ratingLimit" 
+                            name="ratingLimit" 
+                            value="<%= ratingLimit %>" 
+                            min="0" 
+                            max="100" 
+                            step="5"
+                            class="limit-input">
+                    </div>
+                </td>
+                
+                <td width="30%">
+                    <div class="radio-wrapper">
+                        <label>Направление сортировки:</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="direct" value="asc" <%= direct === 'asc' ? 'checked' : '' %>> по возрастанию
+                            </label>
+                            <label>
+                                <input type="radio" name="direct" value="desc" <%= direct === 'desc' ? 'checked' : '' %>> по убыванию
+                            </label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    <div class="citata">
+        <button type="submit" class="green" formaction="/games/order" formmethod="post">
+            Получить данные
+        </button>
+    </div>
+</form>
+
+    <div>
+        <br><div class="title"> 🎮 Коллекция игр: </div>
+
+        <table>
+        <% arrayGames.forEach( game => { %>
+            <tr class="gameTable">
+                <td width="6%">
+                    <form action="/game/editGame" method="POST">
+                        <input type="hidden" name="gameId" value="<%=game.id%>" />
+                        <button type="submit" class="edit-btn">✏ EDIT</button>
+                    </form>
+                </td>
+                <% let listClass = (+game.rating >= ratingLimit)? 'list-green': 'list-red'; %>
+                <td width="36%"> 🎮 <%= game.title %>   </td>
+                <td width="36%"> 📁 <%= game.genre %>   </td>
+                <td class="<%= listClass %>"> ⭐ <%= game.rating %>% </td>
+            </tr>
+        <% }); %>
+        </table>
+        
+        <!-- Модальное окно подтверждения удаления -->
+        <div id="deleteModal" class="modal-overlay">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3>🗑 Подтверждение удаления</h3>
+                    <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <svg class="warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 8v4m0 4h.01M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" stroke-linecap="round"/>
+                    </svg>
+                    <p>Вы действительно хотите удалить эту игру?</p>
+                    <p class="modal-hint">Это действие нельзя отменить.</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeDeleteModal()">Отмена</button>
+                    <button class="btn-confirm" onclick="confirmDelete()">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="citata">
+        <a href="/game/addGame">
+            <button class="blue">➕ ДОБАВИТЬ ИГРУ</button>
+        </a>
+    </div>
+
+    </div>
+    
+    <script>
+        const modal = document.getElementById('deleteModal');
+        let currentDeleteGameId = null;
+        
+        // Обработчик для всех строк таблицы
+        const gameTables = document.querySelectorAll('.gameTable');
+        gameTables.forEach(gameTable => {
+            gameTable.addEventListener('click', (e) => {
+                // Игнорируем клик по кнопке EDIT
+                if (e.target.closest('form')) return;
+                
+                const gameIdInput = gameTable.querySelector('input[name="gameId"]');
+                if (gameIdInput) {
+                    currentDeleteGameId = gameIdInput.value;
+                    modal.classList.add('active');
+                }
+            });
+        });
+        
+        function closeDeleteModal() {
+            modal.classList.remove('active');
+            currentDeleteGameId = null;
+        }
+
+        function confirmDelete() {
+            if (!currentDeleteGameId) {
+                closeDeleteModal();
+                return;
+            }
+            
+            fetch('/game/delGame', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `gameId=${currentDeleteGameId}`
+            })
+            .then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else if (response.ok) {
+                    window.location.href = '/games';
+                } else {
+                    alert('Ошибка при удалении');
+                    closeDeleteModal();
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка при удалении');
+                closeDeleteModal();
+            });
+        }
+
+        // Закрытие по клику на оверлей
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+
+        // Закрытие по клавише ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeDeleteModal();
+            }
+        });
+    </script>
+</body>
+</html>

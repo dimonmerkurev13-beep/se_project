@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title><%= id === -1 ? 'Добавить игру' : 'Редактировать игру' %></title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="citata">
+            <a href="/games">
+                <button class="blue">🎮 НА ГЛАВНУЮ</button>
+            </a>
+        </div>
+
+        <form method="POST" action="/game/<%= btnDo %>">
+            <h2 style="text-align:center; margin-bottom:20px;">
+                <%= id === -1 ? '➕ Новая игра' : '✏ Редактирование игры' %>
+            </h2>
+            <table>
+                <tr>
+                    <td width="36%">
+                        <input type="hidden" name="gameId" value="<%= id %>" />
+                        <input type="text" name="title" value="<%= title %>" placeholder="🎮 Название игры" required />
+                    </td>
+                    <td width="36%">
+                        <input type="text" name="genre" value="<%= genre %>" placeholder="📁 Жанр" required />
+                    </td>
+                    <td width="28%">
+                        <input type="number" name="rating" value="<%= rating > 100 ? 100 : rating %>" placeholder="⭐ Рейтинг (0-100)" min="0" max="100" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="right">
+                        <button type="submit" class="green">
+                            💾 СОХРАНИТЬ
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
